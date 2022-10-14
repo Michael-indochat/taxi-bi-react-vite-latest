@@ -1,6 +1,6 @@
 import React from 'react';
 
-function WelcomeBanner() {
+const WelcomeBanner = ({title,description})=>{
   return (
     <div className="relative bg-indigo-200 p-4 sm:p-6 rounded-sm overflow-hidden mb-8">
 
@@ -48,8 +48,8 @@ function WelcomeBanner() {
 
       {/* Content */}
       <div className="relative">
-        <h1 className="text-2xl md:text-3xl text-slate-800 font-bold mb-1">Header</h1>
-        <p>description</p>
+        <h1 className="text-2xl md:text-3xl text-slate-800 font-bold mb-1">{title}</h1>
+        <p>{description}</p>
       </div>
 
     </div>

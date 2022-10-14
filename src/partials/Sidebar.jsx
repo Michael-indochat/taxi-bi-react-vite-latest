@@ -7,7 +7,13 @@ import SidebarLinkGroup from "./SidebarLinkGroup";
 import { IconContext } from "react-icons";
 import { MdAccessTime } from "react-icons/md";
 
-
+/** Sidebar layout and if-else dynamic render layout
+ * 當此元件渲染完成時，會去 setLocalStorage ('sidebar-expanded')
+ * sidebar-expanded 是為了方便讓我們去偵測 sidebar 彈出或是收回，來新增樣式
+ * @param {Boolean} sidebarOpen
+ * @param {Boolean} setSidebarOpen
+ * @returns
+ */
 const Sidebar = ({ sidebarOpen, setSidebarOpen }) => {
   const location = useLocation();
   const { pathname } = location;
@@ -19,6 +25,12 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }) => {
   const [sidebarExpanded, setSidebarExpanded] = useState(
     storedSidebarExpanded === null ? false : storedSidebarExpanded === "true"
   );
+
+  const filter_NavigationItems_havschild = () => {
+    navigationItems.sidebar.filter((item) => {
+      return item.hasOwnProperty("child");
+    });
+  };
 
   // close on click outside
   useEffect(() => {
@@ -46,6 +58,7 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }) => {
     return () => document.removeEventListener("keydown", keyHandler);
   });
 
+  // 監聽 sidebarExpanded ，有變動時 setLocalStorage {key:value} = {'sidebar-expanded':true}
   useEffect(() => {
     localStorage.setItem("sidebar-expanded", sidebarExpanded);
     if (sidebarExpanded) {
@@ -102,33 +115,35 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }) => {
           <div className="space-y-8">
             {/* Pages group */}
             <ul className="mt-3">
-              {navigationItems.sidebar.map((item) => (
-                <>
-                  <SidebarLinkGroup
-                    activecondition={
-                      pathname === "/" || pathname.includes(item.text)
-                    }
-                  >
-                    {(handleClick, open) => {
-                      return (
-                        <>
-                          <a
-                            href="#0"
-                            className={`block truncate text-slate-200 transition duration-150 hover:text-white ${
-                              (pathname === "/" ||
-                                pathname.includes(item.text)) &&
-                              "hover:text-slate-200"
-                            }`}
-                            onClick={(e) => {
-                              e.preventDefault();
-                              sidebarExpanded
-                                ? handleClick()
-                                : setSidebarExpanded(true);
-                            }}
-                          >
-                            <div className="flex items-center justify-between">
-                              <div className="flex items-center">
-                                {/* <svg
+              {navigationItems.sidebar.map((item) =>
+                item.hasOwnProperty("child") ? (
+                  <>
+                    <SidebarLinkGroup
+                      key={item.text}
+                      activecondition={
+                        pathname === "/" || pathname.includes(item.text)
+                      }
+                    >
+                      {(handleClick, open) => {
+                        return (
+                          <>
+                            <a
+                              href="#0"
+                              className={`block truncate text-slate-200 transition duration-150 hover:text-white ${
+                                (pathname === "/" ||
+                                  pathname.includes(item.text)) &&
+                                "hover:text-slate-200"
+                              }`}
+                              onClick={(e) => {
+                                e.preventDefault();
+                                sidebarExpanded
+                                  ? handleClick()
+                                  : setSidebarExpanded(true);
+                              }}
+                            >
+                              <div className="flex items-center justify-between">
+                                <div className="flex items-center">
+                                  {/* <svg
                                   className="h-6 w-6 shrink-0"
                                   viewBox="0 0 24 24"
                                 >
@@ -157,98 +172,98 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }) => {
                                     d="M12 15c-1.654 0-3-1.346-3-3 0-.462.113-.894.3-1.285L6 6l4.714 3.301A2.973 2.973 0 0112 9c1.654 0 3 1.346 3 3s-1.346 3-3 3z"
                                   />
                                 </svg> */}
-                                <IconContext.Provider
-                                  value={{
-                                    color: "white",
-                                    className: "react-icons",
-                                  }}
-                                >
-                                  <MdAccessTime  className="h-6 w-6 shrink-0"/>
-                                </IconContext.Provider>
-                                <span
-                                  className="ml-3 text-sm font-medium duration-200 lg:opacity-0 lg:sidebar-expanded:opacity-100 2xl:opacity-100"
-                                  key={item.name}
-                                >
-                                  {item.name}
-                                </span>
-                              </div>
-                              {/* Icon */}
-                              <div className="ml-2 flex shrink-0">
-                                <svg
-                                  className={`ml-1 h-3 w-3 shrink-0 fill-current text-slate-400 ${
-                                    open && "rotate-180"
-                                  }`}
-                                  viewBox="0 0 12 12"
-                                >
-                                  <path d="M5.9 11.4L.5 6l1.4-1.4 4 4 4-4L11.3 6z" />
-                                </svg>
-                              </div>
-                            </div>
-                          </a>
-                          {/* inner Route */}
-                          <div className="lg:hidden lg:sidebar-expanded:block 2xl:block">
-                            <ul className={`mt-1 pl-9 ${!open && "hidden"}`}>
-                              {item.child?.map((innerItem) => (
-                                <li
-                                  className="mb-1 last:mb-0"
-                                  key={innerItem.text}
-                                >
-                                  <NavLink
-                                    end
-                                    to={innerItem.to}
-                                    className={({ isActive }) =>
-                                      "block truncate text-slate-400 transition duration-150 hover:text-slate-200 " +
-                                      (isActive ? "!text-indigo-500" : "")
-                                    }
+                                  <IconContext.Provider
+                                    value={{
+                                      color: "white",
+                                      className: "react-icons",
+                                    }}
                                   >
-                                    <span className="text-sm font-medium duration-200 lg:opacity-0 lg:sidebar-expanded:opacity-100 2xl:opacity-100">
-                                      {innerItem.name}
-                                    </span>
-                                  </NavLink>
-                                </li>
-                              ))}
-                            </ul>
-                          </div>
-                        </>
-                      );
-                    }}
-                  </SidebarLinkGroup>
-                </>
-              ))}
+                                    <MdAccessTime className="h-6 w-6 shrink-0" />
+                                  </IconContext.Provider>
+                                  <span className="ml-3 text-sm font-medium duration-200 lg:opacity-0 lg:sidebar-expanded:opacity-100 2xl:opacity-100">
+                                    {item.name}
+                                  </span>
+                                </div>
+                                {/* Icon */}
+                                <div className="ml-2 flex shrink-0">
+                                  <svg
+                                    className={`ml-1 h-3 w-3 shrink-0 fill-current text-slate-400 ${
+                                      open && "rotate-180"
+                                    }`}
+                                    viewBox="0 0 12 12"
+                                  >
+                                    <path d="M5.9 11.4L.5 6l1.4-1.4 4 4 4-4L11.3 6z" />
+                                  </svg>
+                                </div>
+                              </div>
+                            </a>
+                            {/* inner Route */}
+                            <div className="lg:hidden lg:sidebar-expanded:block 2xl:block">
+                              <ul className={`mt-1 pl-9 ${!open && "hidden"}`}>
+                                {item.child?.map((innerItem) => (
+                                  <li
+                                    className="mb-1 last:mb-0"
+                                    key={innerItem.text}
+                                  >
+                                    <NavLink
+                                      end
+                                      to={innerItem.to}
+                                      className={({ isActive }) =>
+                                        "block truncate text-slate-400 transition duration-150 hover:text-slate-200 " +
+                                        (isActive ? "!text-indigo-500" : "")
+                                      }
+                                    >
+                                      <span className="text-sm font-medium duration-200 lg:opacity-0 lg:sidebar-expanded:opacity-100 2xl:opacity-100">
+                                        {innerItem.name}
+                                      </span>
+                                    </NavLink>
+                                  </li>
+                                ))}
+                              </ul>
+                            </div>
+                          </>
+                        );
+                      }}
+                    </SidebarLinkGroup>
+                  </>
+                ) : (
+                  <li
+                    key={item.text}
+                    className={`mb-0.5 rounded-sm px-3 py-2 last:mb-0 ${
+                      pathname.includes(item.to) && "bg-slate-900"
+                    }`}
+                  >
+                    <NavLink
+                      end
+                      to={item.to}
+                      className={`block truncate text-slate-200 transition duration-150 hover:text-white ${
+                        pathname.includes(item.to) && "hover:text-slate-200"
+                      }`}
+                    >
+                      <div className="flex items-center">
+                        <svg className="h-6 w-6 shrink-0" viewBox="0 0 24 24">
+                          <path
+                            className={`fill-current text-slate-600 ${
+                              pathname.includes(item.to) && "text-indigo-500"
+                            }`}
+                            d="M16 13v4H8v-4H0l3-9h18l3 9h-8Z"
+                          />
+                          <path
+                            className={`fill-current text-slate-400 ${
+                              pathname.includes(item.to) && "text-indigo-300"
+                            }`}
+                            d="m23.72 12 .229.686A.984.984 0 0 1 24 13v8a1 1 0 0 1-1 1H1a1 1 0 0 1-1-1v-8c0-.107.017-.213.051-.314L.28 12H8v4h8v-4H23.72ZM13 0v7h3l-4 5-4-5h3V0h2Z"
+                          />
+                        </svg>
+                        <span className="ml-3 text-sm font-medium duration-200 lg:opacity-0 lg:sidebar-expanded:opacity-100 2xl:opacity-100">
+                          {item.name}
+                        </span>
+                      </div>
+                    </NavLink>
+                  </li>
+                )
+              )}
               {/* Inbox */}
-              <li
-                className={`mb-0.5 rounded-sm px-3 py-2 last:mb-0 ${
-                  pathname.includes("inbox") && "bg-slate-900"
-                }`}
-              >
-                <NavLink
-                  end
-                  to="/"
-                  className={`block truncate text-slate-200 transition duration-150 hover:text-white ${
-                    pathname.includes("inbox") && "hover:text-slate-200"
-                  }`}
-                >
-                  <div className="flex items-center">
-                    <svg className="h-6 w-6 shrink-0" viewBox="0 0 24 24">
-                      <path
-                        className={`fill-current text-slate-600 ${
-                          pathname.includes("inbox") && "text-indigo-500"
-                        }`}
-                        d="M16 13v4H8v-4H0l3-9h18l3 9h-8Z"
-                      />
-                      <path
-                        className={`fill-current text-slate-400 ${
-                          pathname.includes("inbox") && "text-indigo-300"
-                        }`}
-                        d="m23.72 12 .229.686A.984.984 0 0 1 24 13v8a1 1 0 0 1-1 1H1a1 1 0 0 1-1-1v-8c0-.107.017-.213.051-.314L.28 12H8v4h8v-4H23.72ZM13 0v7h3l-4 5-4-5h3V0h2Z"
-                      />
-                    </svg>
-                    <span className="ml-3 text-sm font-medium duration-200 lg:opacity-0 lg:sidebar-expanded:opacity-100 2xl:opacity-100">
-                      Inbox
-                    </span>
-                  </div>
-                </NavLink>
-              </li>
             </ul>
           </div>
 

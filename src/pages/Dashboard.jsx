@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
 import InnerContent from "../components/InnerContent";
+import PageFooter from "../components/PageFooter";
 // import Banner from "../partials/Banner";
 import WelcomeBanner from "../partials/dashboard/WelcomeBanner";
 import Header from "../partials/Header";
@@ -26,6 +27,8 @@ const Dashboard = () => {
     navigation("/login");
   };
 
+  const title = 'title'
+  const description = 'description'
   return (
     <>
       {/*  Site header */}
@@ -45,7 +48,7 @@ const Dashboard = () => {
           >
             <div className="flex w-full flex-col">
               {/* Welcome banner */}
-              <WelcomeBanner />
+              <WelcomeBanner title={title} description={description} />
               <InnerContent />
               {/* Dashboard actions */}
             </div>
@@ -53,6 +56,7 @@ const Dashboard = () => {
 
           {/* <Banner /> */}
         </div>
+        <PageFooter/>
       </div>
     </>
   );

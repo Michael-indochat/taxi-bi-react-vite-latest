@@ -8,14 +8,12 @@ const navigationItems = {
       name: "Overview",
       to: "/dashboard/overview",
       text: "overview",
-      // icon: <MdAccessTime />,
     },
     // Analysis
     {
       name: "Analysis",
       to: "",
       text: "analysis",
-      // icon: <MdSignalWifi3Bar />,
       child: [
         {
           name: "Tax Trend",

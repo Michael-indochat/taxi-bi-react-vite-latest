@@ -4,10 +4,9 @@ import { Navigate, Outlet } from "react-router-dom";
 import Dashboard from "../pages/Dashboard";
 
 const useAuth = () => {
+
   //get item from localstorage
-
   let user = null;
-
   const _user = localStorage.getItem("user");
 
   if (_user) {
@@ -27,11 +26,14 @@ const useAuth = () => {
   }
 };
 
-//protected Route state
-// type ProtectedRouteType = {
-// 	roleRequired?: "ADMIN" | "USER"
-// }
 
+/**
+ * 保護路由機制，將會判斷 localStorage 是否有 user key，沒有的話會返回到 /login，
+ * 有的話則會進入 route tree 去 render 後方的 components，
+ * ! Dashboard layout 會從此處加載，讓後續的 component，確保都有 Dashboard layout 可以使用
+ * @param {Boolean} props 
+ * @returns 
+ */
 const ProtectedRoutes = (props) => {
   const { auth, role } = useAuth();
 
