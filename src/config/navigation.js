@@ -5,9 +5,9 @@ const navigationItems = {
   sidebar: [
     // Overview
     {
-      name: "Dashboard ",
-      to: "/dashboard",
-      text: "dashboard",
+      name: "Overview",
+      to: "/dashboard/overview",
+      text: "overview",
       // icon: <MdAccessTime />,
     },
     // Analysis
@@ -19,12 +19,12 @@ const navigationItems = {
       child: [
         {
           name: "Tax Trend",
-          to: "/tax-trend",
+          to: "/dashboard/tax-trend",
           text: "tax-trend",
         },
         {
           name: "Tax Report",
-          to: "/tax-report",
+          to: "/dashboard/tax-report",
           text: "tax-report",
         },
       ],
@@ -37,12 +37,12 @@ const navigationItems = {
       child: [
         {
           name: "Tax Revenue",
-          to: "/tax-renvenue",
+          to: "/dashboard/tax-renvenue",
           text: "tax-renvenue",
         },
         {
           name: "Tax Records",
-          to: "/tax-records",
+          to: "/dashboard/tax-records",
           text: "tax-records",
         },
       ],
@@ -55,17 +55,17 @@ const navigationItems = {
       child: [
         {
           name: "Search Merchant",
-          to: "/search-merchant",
+          to: "/dashboard/search-merchant",
           text: "search-merchant",
         },
         {
           name: "Approve Merchant",
-          to: "/approve-merchant",
+          to: "/dashboard/approve-merchant",
           text: "approve-merchant",
         },
         {
           name: "Approve Edit",
-          to: "/approve-edit",
+          to: "/dashboard/approve-edit",
           text: "approve-edit",
         },
       ],
@@ -78,12 +78,12 @@ const navigationItems = {
       child: [
         {
           name: "Tax Trend",
-          to: "/tax-trend",
+          to: "/dashboard/tax-trend",
           text: "tax-trend",
         },
         {
           name: "Tax Report",
-          to: "/tax-report",
+          to: "/dashboard/tax-report",
           text: "tax-report",
         },
       ],
@@ -91,13 +91,13 @@ const navigationItems = {
     // Billing
     {
       name: "Billing",
-      to: "/billing",
+      to: "/dashboard/billing",
       text: "billing",
     },
     // Feedback
     {
       name: "Feedback",
-      to: "/feedback",
+      to: "/dashboard/feedback",
       text: "feedback",
     },
   ],
