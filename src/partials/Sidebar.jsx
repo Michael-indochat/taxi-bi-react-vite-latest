@@ -105,7 +105,7 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }) => {
               >
                 {(handleClick, open) => {
                   return (
-                    <React.Fragment>
+                    <>
                       <a
                         href="#0"
                         className={`block truncate text-slate-200 transition duration-150 hover:text-white ${
@@ -208,7 +208,7 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }) => {
                           </li>
                         </ul>
                       </div>
-                    </React.Fragment>
+                    </>
                   );
                 }}
               </SidebarLinkGroup>
@@ -218,7 +218,7 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }) => {
               >
                 {(handleClick, open) => {
                   return (
-                    <React.Fragment>
+                    <>
                       <a
                         href="#0"
                         className={`block truncate text-slate-200 transition duration-150 hover:text-white ${
@@ -391,7 +391,7 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }) => {
                           </li>
                         </ul>
                       </div>
-                    </React.Fragment>
+                    </>
                   );
                 }}
               </SidebarLinkGroup>
@@ -401,7 +401,7 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }) => {
               >
                 {(handleClick, open) => {
                   return (
-                    <React.Fragment>
+                    <>
                       <a
                         href="#0"
                         className={`block truncate text-slate-200 transition duration-150 hover:text-white ${
@@ -545,7 +545,7 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }) => {
                           </li>
                         </ul>
                       </div>
-                    </React.Fragment>
+                    </>
                   );
                 }}
               </SidebarLinkGroup>
@@ -553,7 +553,7 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }) => {
               <SidebarLinkGroup activecondition={pathname.includes("finance")}>
                 {(handleClick, open) => {
                   return (
-                    <React.Fragment>
+                    <>
                       <a
                         href="#0"
                         className={`block truncate text-slate-200 transition duration-150 hover:text-white ${
@@ -648,7 +648,7 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }) => {
                           </li>
                         </ul>
                       </div>
-                    </React.Fragment>
+                    </>
                   );
                 }}
               </SidebarLinkGroup>
@@ -656,7 +656,7 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }) => {
               <SidebarLinkGroup activecondition={pathname.includes("job")}>
                 {(handleClick, open) => {
                   return (
-                    <React.Fragment>
+                    <>
                       <a
                         href="#0"
                         className={`block truncate text-slate-200 transition duration-150 hover:text-white ${
@@ -748,7 +748,7 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }) => {
                           </li>
                         </ul>
                       </div>
-                    </React.Fragment>
+                    </>
                   );
                 }}
               </SidebarLinkGroup>
@@ -756,7 +756,7 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }) => {
               <SidebarLinkGroup activecondition={pathname.includes("tasks")}>
                 {(handleClick, open) => {
                   return (
-                    <React.Fragment>
+                    <>
                       <a
                         href="#0"
                         className={`block truncate text-slate-200 transition duration-150 hover:text-white ${
@@ -840,7 +840,7 @@ const Sidebar = ({ sidebarOpen, setSidebarOpen }) => {
                           </li>
                         </ul>
                       </div>
-                    </React.Fragment>
+                    </>
                   );
                 }}
               </SidebarLinkGroup>
