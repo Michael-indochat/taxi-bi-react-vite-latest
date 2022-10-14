@@ -44,7 +44,7 @@ const Dashboard = () => {
           <Sidebar sidebarOpen={sidebarOpen} setSidebarOpen={setSidebarOpen} />
 
           <main
-            className={`w-full min-w-0 flex-auto lg:static lg:max-h-full lg:overflow-visible lg:sidebar-expanded:!ml-72`}
+            className={`w-full min-w-0 flex-auto lg:static lg:ml-28 lg:max-h-full lg:overflow-visible lg:sidebar-expanded:!ml-72 2xl:ml-72 2xl:sidebar-expanded:!ml-72`}
           >
             <div className="flex w-full flex-col">
               {/* Welcome banner */}
