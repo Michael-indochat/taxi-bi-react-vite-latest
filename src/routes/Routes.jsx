@@ -16,6 +16,7 @@ import TaxRenvenue from "../components/TaxRenvenue";
 import TaxReport from "../components/TaxReport";
 import TaxTrend from "../components/TaxTrend";
 import LoginPage from "../pages/LoginPage";
+import Overview from "../pages/Overview";
 
 const MainRoutes = () => (
   <Routes>
@@ -23,31 +24,44 @@ const MainRoutes = () => (
     {/** Wrap all Route under ProtectedRoutes element */}
     <Route path="/" element={<ProtectedRoutes />}>
       <Route path="/" element={<InnerContent />}>
-        <Route path="/" element={<Navigate replace to="dashboard" />} />
-        <Route path="dashboard" element={<Dashboard />}>
-          <Route path="tax-trend" element={<TaxTrend />} />
-          <Route path="tax-report" element={<TaxReport />} />
+        <Route
+          path="/"
+          element={<Navigate replace to="/dashboard/overview" />}
+        />
+        <Route path="/dashboard" element={<Dashboard />}>
+          <Route path="/dashboard/overview" element={<Overview />} />
+          <Route path="/dashboard/tax-trend" element={<TaxTrend />} />
+          <Route path="/dashboard/tax-report" element={<TaxReport />} />
           {/* Tax */}
-          <Route path="tax-renvenue" element={<TaxRenvenue />} />
-          <Route path="tax-records" element={<TaxRecords />} />
+          <Route path="/dashboard/tax-renvenue" element={<TaxRenvenue />} />
+          <Route path="/dashboard/tax-records" element={<TaxRecords />} />
           {/* Merchant */}
-          <Route path="search-merchant" element={<SearchMerchant />} />
-          <Route path="approve-merchant" element={<ApproveMerchant />} />
-          <Route path="approve-edit" element={<ApproveEdit />} />
+          <Route
+            path="/dashboard/search-merchant"
+            element={<SearchMerchant />}
+          />
+          <Route
+            path="/dashboard/approve-merchant"
+            element={<ApproveMerchant />}
+          />
+          <Route path="/dashboard/approve-edit" element={<ApproveEdit />} />
           {/* Receipt */}
-          <Route path="search-receipt" element={<SearchReceipt />} />
-          <Route path="receipt-invalid" element={<ReceiptInvaild />} />
+          <Route path="/dashboard/search-receipt" element={<SearchReceipt />} />
+          <Route
+            path="/dashboard/receipt-invalid"
+            element={<ReceiptInvaild />}
+          />
           {/* Billing */}
-          <Route path="billing" element={<Billing />} />
+          <Route path="/dashboard/billing" element={<Billing />} />
           {/* Feedback */}
-          <Route path="feedback" element={<Feedback />} />
+          <Route path="/dashboard/feedback" element={<Feedback />} />
         </Route>
       </Route>
     </Route>
 
     {/** Public Routes */}
     {/** Wrap all Route under PublicRoutes element */}
-    <Route path="login" element={<PublicRoutes />}>
+    <Route path="/login" element={<PublicRoutes />}>
       {/* <Route path="/login" element={<LoginPage />} /> */}
       <Route path="/login" element={<LoginPage />} />
     </Route>
