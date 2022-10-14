@@ -1,100 +1,104 @@
+// import { MdAccessTime, MdSignalWifi3Bar } from "react-icons/md";
+
+
 const navigationItems = {
   sidebar: [
     // Overview
     {
       name: "Dashboard ",
       to: "/dashboard",
-      text: "Dashboard",
-      svgName:'MdAccessTime',
+      text: "dashboard",
+      // icon: <MdAccessTime />,
     },
     // Analysis
     {
       name: "Analysis",
       to: "",
-      text: "Analysis",
+      text: "analysis",
+      // icon: <MdSignalWifi3Bar />,
       child: [
         {
           name: "Tax Trend",
           to: "/tax-trend",
-          text:"Tax Trend"
+          text: "tax-trend",
         },
         {
           name: "Tax Report",
           to: "/tax-report",
-          text:"Tax Report"
-        }
-      ]
+          text: "tax-report",
+        },
+      ],
     },
     // Tax
     {
-      name: 'Tax',
-      to: '',
-      text: 'Tax',
+      name: "Tax",
+      to: "",
+      text: "tax",
       child: [
         {
           name: "Tax Revenue",
           to: "/tax-renvenue",
-          text:"Tax Renvenue"
+          text: "tax-renvenue",
         },
         {
           name: "Tax Records",
           to: "/tax-records",
-          text:"Tax Records"
-        }
-      ]
+          text: "tax-records",
+        },
+      ],
     },
     // Merchant
     {
-      name: 'Merchant',
-      to: '',
-      text: 'Merchant',
+      name: "Merchant",
+      to: "",
+      text: "merchant",
       child: [
         {
           name: "Search Merchant",
           to: "/search-merchant",
-          text:"Search Merchant"
+          text: "search-merchant",
         },
         {
           name: "Approve Merchant",
           to: "/approve-merchant",
-          text:"Approve Merchant"
+          text: "approve-merchant",
         },
         {
           name: "Approve Edit",
           to: "/approve-edit",
-          text:"Approve Edit"
-        }
-      ]
+          text: "approve-edit",
+        },
+      ],
     },
     // Receipt
     {
       name: "Receipt ",
       to: "",
-      text: "Receipt",
+      text: "receipt",
       child: [
         {
           name: "Tax Trend",
           to: "/tax-trend",
-          text:"taxTrend"
+          text: "tax-trend",
         },
         {
           name: "Tax Report",
           to: "/tax-report",
-          text:"taxReport"
-        }
-      ]
+          text: "tax-report",
+        },
+      ],
     },
     // Billing
     {
       name: "Billing",
       to: "/billing",
-      text: "Billing",
+      text: "billing",
     },
     // Feedback
     {
       name: "Feedback",
       to: "/feedback",
-      text: "Feedback",
+      text: "feedback",
     },
   ],
   footer: [],
