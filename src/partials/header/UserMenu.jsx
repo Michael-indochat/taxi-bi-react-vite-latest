@@ -2,7 +2,8 @@ import React, { useEffect, useRef, useState } from "react";
 import { Link } from "react-router-dom";
 import Transition from "../../utils/Transition";
 
-import UserAvatar from "../../images/user-avatar-32.png";
+import { IconContext } from "react-icons";
+import { MdPerson } from "react-icons/md";
 
 const UserMenu = (signOut) => {
   const [dropdownOpen, setDropdownOpen] = useState(false);
@@ -44,23 +45,13 @@ const UserMenu = (signOut) => {
         onClick={() => setDropdownOpen(!dropdownOpen)}
         aria-expanded={dropdownOpen}
       >
-        <img
-          className="h-8 w-8 rounded-full"
-          src={UserAvatar}
-          width="32"
-          height="32"
-          alt="User"
-        />
         <div className="flex items-center truncate">
-          <span className="ml-2 truncate text-sm font-medium group-hover:text-slate-800">
-            Acme Inc.
-          </span>
-          <svg
-            className="ml-1 h-3 w-3 shrink-0 fill-current text-slate-400"
-            viewBox="0 0 12 12"
-          >
-            <path d="M5.9 11.4L.5 6l1.4-1.4 4 4 4-4L11.3 6z" />
-          </svg>
+          <IconContext.Provider value={{ color: "#fff" }}>
+            <MdPerson
+              key={signOut.signOut}
+              className="ml-1 h-5 w-5 shrink-0 fill-current text-slate-400"
+            />
+          </IconContext.Provider>
         </div>
       </button>
 
