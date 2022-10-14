@@ -1,6 +1,7 @@
 import React from "react";
 
 import { Navigate, Outlet } from "react-router-dom";
+import Dashboard from "../pages/Dashboard";
 
 const useAuth = () => {
   //get item from localstorage
@@ -46,7 +47,13 @@ const ProtectedRoutes = (props) => {
       <Navigate to="/login" />
     );
   } else {
-    return auth ? <Outlet /> : <Navigate to="/login" />;
+    return auth ? (
+      <Dashboard>
+        <Outlet />
+      </Dashboard>
+    ) : (
+      <Navigate to="/login" />
+    );
   }
 };
 
